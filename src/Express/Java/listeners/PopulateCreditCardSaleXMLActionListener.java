@@ -1,16 +1,19 @@
-package Express.Java;
+package Express.Java.listeners;
 
+
+import Express.Java.models.ConfigurationData;
+import Express.Java.models.CreditCardSaleXML;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextArea;
 
-public class PopulateCreditCardSaleSOAPActionListener implements ActionListener{
+public class PopulateCreditCardSaleXMLActionListener implements ActionListener{
 	    private JTextArea txtRequest;
 	    private ConfigurationData configData;
 
-	    public PopulateCreditCardSaleSOAPActionListener(JTextArea txtRequest, ConfigurationData configData) {
+	    public PopulateCreditCardSaleXMLActionListener(JTextArea txtRequest, ConfigurationData configData) {
 	        super();
 	        this.txtRequest = txtRequest;
 	        this.configData = configData;
@@ -20,9 +23,9 @@ public class PopulateCreditCardSaleSOAPActionListener implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 			
 			try { 
-	            this.configData.SoapAction = "\"https://transaction.elementexpress.com/CreditCardSale\"";;
+	            this.configData.SoapAction = null;
 	            
-				this.txtRequest.setText(CreditCardSaleSOAP.CreditCardSaleToSOAP(CreditCardSaleSOAP.GetCreditCardSale(this.configData)));
+				this.txtRequest.setText(CreditCardSaleXML.CreditCardSaleToXML(CreditCardSaleXML.GetCreditCardSale(this.configData)));
 				
 				} 
 				catch (Exception ex) {  

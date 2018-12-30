@@ -1,4 +1,4 @@
-package Express.Java;
+package Express.Java.models;
 
 public class ConfigurationData {
 	public String AccountID;

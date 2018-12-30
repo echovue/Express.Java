@@ -1,4 +1,5 @@
-package Express.Java;
+package Express.Java.models;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -8,15 +9,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "HealthCheck", namespace = "https://transaction.elementexpress.com")
-public class HealthCheckSOAP {
-	@XmlElement(name = "credentials")
-	public Credentials Credentials;
-	@XmlElement(name = "application")
-	public Application Application;
+public class HealthCheckXML {
+	@XmlElement(name = "Credentials")
+	public Express.Java.models.Credentials Credentials;
+	@XmlElement(name = "Application")
+	public Express.Java.models.Application Application;
 	
-	public static HealthCheckSOAP GetHealthCheck(ConfigurationData configData)
+	public static HealthCheckXML GetHealthCheck(ConfigurationData configData)
 	{
-		HealthCheckSOAP healthCheck = new HealthCheckSOAP();
+		HealthCheckXML healthCheck = new HealthCheckXML();
 		healthCheck.Credentials = new Credentials();
 		healthCheck.Credentials.AccountID = configData.AccountID;
 		healthCheck.Credentials.AccountToken = configData.AccountToken;
@@ -29,11 +30,11 @@ public class HealthCheckSOAP {
 		return healthCheck;
 	}
 	
-	public static String HealthCheckToXML(HealthCheckSOAP healthCheck) {
+	public static String HealthCheckToXML(HealthCheckXML healthCheck) {
 		String xmlString = "";
 		
 		try {					
-			JAXBContext jaxbContext = JAXBContext.newInstance(HealthCheckSOAP.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(HealthCheckXML.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 	
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
@@ -53,17 +54,4 @@ public class HealthCheckSOAP {
 		
         return xmlString;
 	}	
-	
-	public static String HealthCheckToSOAP(HealthCheckSOAP healthCheck) {
-		
-		String soap = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-		soap += "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n";
-		soap += "<soap:Body>\n";
-		soap += HealthCheckToXML(healthCheck);
-		soap += "\n";
-		soap += "</soap:Body>\n";
-		soap += "</soap:Envelope>\n";
-		
-		return soap;									
-	}
 }

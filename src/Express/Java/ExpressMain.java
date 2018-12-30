@@ -1,4 +1,14 @@
 package Express.Java;
+import Express.Java.listeners.ClearDataActionListener;
+import Express.Java.listeners.PopulateCreditCardSaleSOAPActionListener;
+import Express.Java.listeners.PopulateCreditCardSaleXMLActionListener;
+import Express.Java.listeners.PopulateEBTBalanceInquiryXMLActionListener;
+import Express.Java.listeners.PopulateEBTCardSaleXMLActionListener;
+import Express.Java.listeners.PopulateHealthCheckSOAPActionListener;
+import Express.Java.listeners.PopulateHealthCheckXMLActionListener;
+import Express.Java.listeners.SendTransactionActionListener;
+import Express.Java.models.ConfigurationData;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -6,8 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
@@ -68,7 +76,7 @@ public class ExpressMain extends JFrame {
         
 		setTitle("Express.Java");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 490, 466);
+		setBounds(100, 100, 790, 890);
 		getContentPane().setLayout(null);	
 		
 		
@@ -78,16 +86,16 @@ public class ExpressMain extends JFrame {
 			
 		JTextArea txtRequest = new JTextArea();
 		JScrollPane sp = new JScrollPane(txtRequest);
-		sp.setBounds(10, 104, 455, 131);
+		sp.setBounds(10, 104, 750, 350);
 		getContentPane().add(sp);
 		
 		JLabel lblResponse = new JLabel("Response:");
-		lblResponse.setBounds(10, 246, 86, 14);
+		lblResponse.setBounds(10, 464, 86, 14);
 		getContentPane().add(lblResponse);
 				
 		JTextArea txtResponse = new JTextArea();
 		JScrollPane sp2 = new JScrollPane(txtResponse);
-		sp2.setBounds(10, 266, 455, 151);
+		sp2.setBounds(10, 489, 750, 350);
 		getContentPane().add(sp2);
 		
 		JButton btnSaleRequestXml = new JButton("Sale Request XML");
@@ -99,12 +107,17 @@ public class ExpressMain extends JFrame {
 		btnSaleRequestSoap.addActionListener(new PopulateCreditCardSaleSOAPActionListener(txtRequest, configData));
 		btnSaleRequestSoap.setBounds(157, 11, 160, 23);
 		getContentPane().add(btnSaleRequestSoap);
-		
+
+		JButton btnEBTBalanceInquiry = new JButton("EBT Balance Inquiry XML");
+		btnEBTBalanceInquiry.addActionListener(new PopulateEBTBalanceInquiryXMLActionListener(txtRequest, configData));
+		btnEBTBalanceInquiry.setBounds(327, 11, 180, 23);
+		getContentPane().add(btnEBTBalanceInquiry);
+
 		JButton btnSendTransaction = new JButton("Send Transaction");
 		btnSendTransaction.addActionListener(new SendTransactionActionListener(configData, txtRequest, txtResponse));
-		btnSendTransaction.setBounds(327, 11, 137, 23);
+		btnSendTransaction.setBounds(517, 11, 137, 23);
 		getContentPane().add(btnSendTransaction);
-		
+
 		JButton btnHealthCheckXml = new JButton("Health Check XML");
 		btnHealthCheckXml.addActionListener(new PopulateHealthCheckXMLActionListener(txtRequest, configData));
 		btnHealthCheckXml.setBounds(10, 45, 137, 23);
@@ -114,10 +127,15 @@ public class ExpressMain extends JFrame {
 		btnHealthCheckSoap.addActionListener(new PopulateHealthCheckSOAPActionListener(txtRequest, configData));
 		btnHealthCheckSoap.setBounds(157, 45, 160, 23);
 		getContentPane().add(btnHealthCheckSoap);
-		
+
+		JButton btnEBTSaleXML = new JButton("EBT Sale XML");
+		btnEBTSaleXML.addActionListener(new PopulateEBTCardSaleXMLActionListener(txtRequest, configData));
+		btnEBTSaleXML.setBounds(327, 45, 180, 23);
+		getContentPane().add(btnEBTSaleXML);
+
 		JButton btnClearData = new JButton("Clear Data");
 		btnClearData.addActionListener(new ClearDataActionListener(txtRequest, txtResponse));
-		btnClearData.setBounds(327, 45, 137, 23);
+		btnClearData.setBounds(517, 45, 137, 23);
 		getContentPane().add(btnClearData);
 
 	}

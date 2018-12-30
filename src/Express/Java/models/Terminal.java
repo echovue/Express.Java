@@ -1,4 +1,4 @@
-package Express.Java;
+package Express.Java.models;
 
 import javax.xml.bind.annotation.XmlElement;
 

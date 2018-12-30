@@ -1,4 +1,4 @@
-package Express.Java;
+package Express.Java.models;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -9,4 +9,8 @@ public class Card {
 	public String ExpirationMonth;
 	@XmlElement(name = "ExpirationYear")
 	public String ExpirationYear;
+	@XmlElement(name = "PINBlock")
+	public String PINBlock;
+	@XmlElement(name = "KeySerialNumber")
+	public String KeySerialNumber;
 }

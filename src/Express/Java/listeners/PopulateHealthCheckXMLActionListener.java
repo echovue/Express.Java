@@ -1,16 +1,18 @@
-package Express.Java;
+package Express.Java.listeners;
 
+import Express.Java.models.ConfigurationData;
+import Express.Java.models.HealthCheckXML;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextArea;
 
-public class PopulateCreditCardSaleXMLActionListener implements ActionListener{
+public class PopulateHealthCheckXMLActionListener implements ActionListener{
 	    private JTextArea txtRequest;
 	    private ConfigurationData configData;
 
-	    public PopulateCreditCardSaleXMLActionListener(JTextArea txtRequest, ConfigurationData configData) {
+	    public PopulateHealthCheckXMLActionListener(JTextArea txtRequest, ConfigurationData configData) {
 	        super();
 	        this.txtRequest = txtRequest;
 	        this.configData = configData;
@@ -22,7 +24,7 @@ public class PopulateCreditCardSaleXMLActionListener implements ActionListener{
 			try { 
 	            this.configData.SoapAction = null;
 	            
-				this.txtRequest.setText(CreditCardSaleXML.CreditCardSaleToXML(CreditCardSaleXML.GetCreditCardSale(this.configData)));
+				this.txtRequest.setText(HealthCheckXML.HealthCheckToXML(HealthCheckXML.GetHealthCheck(this.configData)));
 				
 				} 
 				catch (Exception ex) {  

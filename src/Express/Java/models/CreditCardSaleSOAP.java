@@ -1,4 +1,4 @@
-package Express.Java;
+package Express.Java.models;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -12,15 +12,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CreditCardSaleSOAP {
 
 	@XmlElement(name = "credentials")
-	public Credentials Credentials;
+	public Express.Java.models.Credentials Credentials;
 	@XmlElement(name = "application")	
-	public Application Application;
+	public Express.Java.models.Application Application;
 	@XmlElement(name = "terminal")
-	public Terminal Terminal;
+	public Express.Java.models.Terminal Terminal;
 	@XmlElement(name = "card")
-	public Card Card;
+	public Express.Java.models.Card Card;
 	@XmlElement(name = "transaction")
-	public Transaction Transaction;	
+	public Express.Java.models.Transaction Transaction;
 	
 	
 	public static CreditCardSaleSOAP GetCreditCardSale(ConfigurationData configData)
